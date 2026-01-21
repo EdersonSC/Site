@@ -92,63 +92,113 @@
     });
   }
 })();
-// ===== Carrossel (scroll-snap) =====
+// ===== Hero Carousel (leve, responsivo, sem libs) =====
 (function () {
-  const root = document.querySelector("[data-carousel]");
+  const root = document.querySelector("[data-hero-carousel]");
   if (!root) return;
 
-  const viewport = root.querySelector("[data-carousel-viewport]");
-  const slides = Array.from(root.querySelectorAll("[data-carousel-slide]"));
-  const dotsWrap = root.querySelector("[data-carousel-dots]");
-  const prevBtn = root.querySelector("[data-carousel-prev]");
-  const nextBtn = root.querySelector("[data-carousel-next]");
+  const track = root.querySelector("[data-hero-track]");
+  const slides = Array.from(root.querySelectorAll("[data-hero-slide]"));
+  const dotsWrap = root.querySelector("[data-hero-dots]");
+  const prevBtn = root.querySelector("[data-hero-prev]");
+  const nextBtn = root.querySelector("[data-hero-next]");
+  const pauseBtn = root.querySelector("[data-hero-pause]");
 
-  if (!viewport || slides.length === 0 || !dotsWrap) return;
+  if (!track || slides.length === 0 || !dotsWrap) return;
 
-  // Dots
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let index = 0;
+  let timer = null;
+  let paused = false;
+
   const dots = slides.map((_, i) => {
     const b = document.createElement("button");
     b.type = "button";
-    b.className = "carousel-dot";
-    b.setAttribute("aria-label", `Ir para a foto ${i + 1}`);
-    b.addEventListener("click", () => slides[i].scrollIntoView({ behavior: "smooth", inline: "start" }));
+    b.className = "hero-dot";
+    b.setAttribute("aria-label", `Ir para a imagem ${i + 1}`);
+    b.addEventListener("click", () => goTo(i, true));
     dotsWrap.appendChild(b);
     return b;
   });
 
-  const setActive = (index) => {
+  function render() {
+    track.style.transform = `translateX(${-index * 100}%)`;
+    slides.forEach((s, i) => s.setAttribute("aria-hidden", i === index ? "false" : "true"));
     dots.forEach((d, i) => d.setAttribute("aria-current", i === index ? "true" : "false"));
-  };
-  setActive(0);
-
-  // Observa slide visível para atualizar dot
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver((entries) => {
-      // pega o mais visível
-      const visible = entries
-        .filter(e => e.isIntersecting)
-        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-
-      const idx = slides.indexOf(visible.target);
-      if (idx >= 0) setActive(idx);
-    }, { root: viewport, threshold: [0.4, 0.6, 0.8] });
-
-    slides.forEach(s => io.observe(s));
   }
 
-  const go = (dir) => {
-    const current = dots.findIndex(d => d.getAttribute("aria-current") === "true");
-    const next = Math.min(slides.length - 1, Math.max(0, current + dir));
-    slides[next].scrollIntoView({ behavior: "smooth", inline: "start" });
-  };
+  function goTo(i, userAction = false) {
+    index = (i + slides.length) % slides.length;
+    render();
+    if (userAction) restartAutoplay();
+  }
 
-  prevBtn && prevBtn.addEventListener("click", () => go(-1));
-  nextBtn && nextBtn.addEventListener("click", () => go(1));
+  function next() { goTo(index + 1, true); }
+  function prev() { goTo(index - 1, true); }
 
-  // Teclado (quando o viewport está focado)
-  viewport.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
-    if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+  function stopAutoplay() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function startAutoplay() {
+    if (prefersReduced || paused) return;
+    stopAutoplay();
+    timer = setInterval(() => {
+      index = (index + 1) % slides.length;
+      render();
+    }, 5000);
+  }
+
+  function restartAutoplay() {
+    if (prefersReduced || paused) return;
+    startAutoplay();
+  }
+
+  // Botões
+  prevBtn && prevBtn.addEventListener("click", prev);
+  nextBtn && nextBtn.addEventListener("click", next);
+
+  // Pause
+  if (pauseBtn) {
+    pauseBtn.addEventListener("click", () => {
+      paused = !paused;
+      pauseBtn.setAttribute("aria-pressed", String(paused));
+      pauseBtn.textContent = paused ? "Retomar" : "Pausar";
+      paused ? stopAutoplay() : startAutoplay();
+    });
+  }
+
+  // Pausa ao passar mouse / focar (evita “brigar” com o usuário)
+  root.addEventListener("mouseenter", () => { if (!prefersReduced) stopAutoplay(); });
+  root.addEventListener("mouseleave", () => { if (!prefersReduced) startAutoplay(); });
+  root.addEventListener("focusin", () => { if (!prefersReduced) stopAutoplay(); });
+  root.addEventListener("focusout", () => { if (!prefersReduced) startAutoplay(); });
+
+  // Teclado
+  root.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+    if (e.key === "ArrowRight") { e.preventDefault(); next(); }
   });
+
+  // Swipe (mobile)
+  let startX = null;
+  root.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+  root.addEventListener("pointerup", (e) => {
+    if (startX == null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) < 40) return;
+    dx < 0 ? next() : prev();
+  });
+
+  // Se mudar de aba, pausa
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
+  });
+
+  render();
+  startAutoplay();
 })();
