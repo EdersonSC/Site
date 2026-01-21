@@ -937,3 +937,38 @@ section[id]{
 @media (prefers-reduced-motion: reduce){
   .hero-carousel__track{ transition: none; }
 }
+
+/* Controle de tamanho do logo por breakpoint */
+:root{
+  --brand-mark-size: 80px;  /* desktop */
+  --brand-logo-size: 70px;
+}
+
+.brand-mark{
+  width: var(--brand-mark-size);
+  height: var(--brand-mark-size);
+  flex: 0 0 auto;
+}
+
+.brand-logo{
+  width: var(--brand-logo-size);
+  height: var(--brand-logo-size);
+  object-fit: contain;
+}
+
+/* Mobile: logo menor e mais “leve” visualmente */
+@media (max-width: 520px){
+  :root{
+    --brand-mark-size: 48px;
+    --brand-logo-size: 40px;
+  }
+
+  /* opcional: deixa o “selo” menos chamativo no celular */
+  .brand-mark{
+    background: rgba(255,255,255,.06);  /* em vez de branco sólido */
+    box-shadow: none;
+  }
+
+  /* opcional: melhora alinhamento do texto */
+  .brand-tag{ font-size: .80rem; }
+}
