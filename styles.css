@@ -972,3 +972,55 @@ section[id]{
   /* opcional: melhora alinhamento do texto */
   .brand-tag{ font-size: .80rem; }
 }
+
+/* ===== Tamanho do logo responsivo (corrige desktop + mobile) ===== */
+:root{
+  --brand-mark-size: 64px;  /* desktop padrão */
+  --brand-logo-size: 56px;
+}
+
+/* telas grandes: pode aumentar um pouco, sem “estourar” o header */
+@media (min-width: 1200px){
+  :root{
+    --brand-mark-size: 72px;
+    --brand-logo-size: 62px;
+  }
+}
+
+/* mobile: compacto */
+@media (max-width: 520px){
+  :root{
+    --brand-mark-size: 48px;
+    --brand-logo-size: 40px;
+  }
+}
+
+/* aplica as variáveis */
+.brand-mark{
+  width: var(--brand-mark-size);
+  height: var(--brand-mark-size);
+  border-radius: 999px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+
+  background: #fff;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+.brand-logo{
+  width: var(--brand-logo-size);
+  height: var(--brand-logo-size);
+  object-fit: contain;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* deixa o header mais “fino” sem mexer no layout */
+.header-inner{
+  padding: .55rem 0;
+}
