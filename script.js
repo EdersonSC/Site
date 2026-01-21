@@ -202,3 +202,65 @@
   render();
   startAutoplay();
 })();
+
+/* Header escondido no topo e aparece ao rolar */
+.site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+
+  transition: transform .35s ease, opacity .25s ease;
+}
+
+.site-header.is-visible{
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Para as âncoras (#academia etc) não ficarem “embaixo” do header */
+:root{ --header-offset: 92px; }
+html{ scroll-padding-top: var(--header-offset); }
+section[id]{ scroll-margin-top: var(--header-offset); }
+
+@media (max-width: 520px){
+  :root{ --header-offset: 78px; }
+}
+
+// Header aparece somente quando rolar (quando o hero sai da tela)
+(function () {
+  const header = document.querySelector(".site-header");
+  const hero = document.querySelector("[data-hero-carousel]");
+
+  if (!header || !hero) return;
+
+  const show = () => header.classList.add("is-visible");
+  const hide = () => header.classList.remove("is-visible");
+
+  // Preferível: baseado no hero (fica bem “estilo template”)
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0];
+        // Se o hero ainda está visível -> esconde header
+        // Se o hero saiu -> mostra header
+        if (e.isIntersecting) hide();
+        else show();
+      },
+      { threshold: 0.05 }
+    );
+
+    io.observe(hero);
+  } else {
+    // Fallback: baseado em scroll
+    const onScroll = () => (window.scrollY > 40 ? show() : hide());
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+})();
