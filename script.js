@@ -1,98 +1,143 @@
+/* ===== Navegação mobile ===== */
 (function () {
-  const WHATSAPP_NUMBER_E164 = "5519993422115"; // derivado do (19) 99342-2115
-  const nav = document.getElementById("nav");
-  const toggle = document.querySelector(".nav-toggle");
+  const btn = document.querySelector(".nav-toggle");
+  const nav = document.querySelector("#nav");
+  if (!btn || !nav) return;
 
-  // Menu mobile
-  if (toggle && nav) {
-    toggle.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-    });
+  const setExpanded = (isOpen) => {
+    btn.setAttribute("aria-expanded", String(isOpen));
+    nav.classList.toggle("is-open", isOpen);
+  };
 
-    // Fecha ao clicar em um link
-    nav.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => {
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
+  btn.addEventListener("click", () => {
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+    setExpanded(!isOpen);
+  });
+
+  // Fecha ao clicar em um link
+  nav.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    setExpanded(false);
+  });
+
+  // Fecha no ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setExpanded(false);
+  });
+})();
+
+/* ===== Reveal on scroll ===== */
+(function () {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("is-visible");
       });
-    });
-  }
+    },
+    { threshold: 0.12 }
+  );
 
-  // Reveal on scroll
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!prefersReduced && "IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("is-visible");
-        });
-      },
-      { threshold: 0.12 }
-    );
+  items.forEach((el) => io.observe(el));
+})();
 
-    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-  } else {
-    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
-  }
+/* ===== Form -> WhatsApp ===== */
+(function () {
+  const form = document.querySelector("#leadForm");
+  if (!form) return;
 
-  // Form -> abre WhatsApp com mensagem (sem backend)
-  const form = document.getElementById("leadForm");
+  const getErrorEl = (name) => form.querySelector(`[data-for="${name}"]`);
+
   const setError = (name, msg) => {
-    const el = document.querySelector(`.error[data-for="${name}"]`);
+    const el = getErrorEl(name);
     if (el) el.textContent = msg || "";
   };
 
-  const cleanPhone = (v) => (v || "").replace(/[^\d+]/g, "").trim();
+  const sanitize = (s) => String(s || "").trim();
 
-  const validate = (data) => {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nome = sanitize(form.nome?.value);
+    const telefone = sanitize(form.telefone?.value);
+    const mensagem = sanitize(form.mensagem?.value);
+
     let ok = true;
 
-    if (!data.nome || data.nome.trim().length < 2) {
-      setError("nome", "Informe seu nome (mínimo 2 caracteres).");
-      ok = false;
-    } else setError("nome", "");
+    setError("nome", "");
+    setError("telefone", "");
+    setError("mensagem", "");
 
-    const tel = cleanPhone(data.telefone);
-    if (!tel || tel.replace(/\D/g, "").length < 10) {
-      setError("telefone", "Informe um telefone/WhatsApp válido.");
-      ok = false;
-    } else setError("telefone", "");
+    if (nome.length < 2) { setError("nome", "Informe seu nome."); ok = false; }
+    if (telefone.length < 8) { setError("telefone", "Informe seu telefone/WhatsApp."); ok = false; }
+    if (mensagem.length < 10) { setError("mensagem", "Escreva uma mensagem (mínimo 10 caracteres)."); ok = false; }
 
-    if (!data.mensagem || data.mensagem.trim().length < 10) {
-      setError("mensagem", "Escreva uma mensagem um pouco mais detalhada (mínimo 10 caracteres).");
-      ok = false;
-    } else setError("mensagem", "");
+    if (!ok) return;
 
-    return ok;
+    const text =
+      `Olá! Meu nome é ${nome}.\n` +
+      `Meu WhatsApp: ${telefone}\n\n` +
+      `${mensagem}`;
+
+    const url = `https://wa.me/5519993422115?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  });
+})();
+
+/* ===== Header aparece só quando rolar (hero sai da tela) + offset automático ===== */
+(function () {
+  const header = document.querySelector(".site-header");
+  const hero = document.querySelector(".hero-carousel");
+
+  if (!header) return;
+
+  const setOffset = () => {
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    // folga para não “cortar” títulos ao clicar no menu
+    document.documentElement.style.setProperty("--header-offset", `${h + 14}px`);
   };
 
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+  setOffset();
+  window.addEventListener("resize", setOffset);
 
-      const data = {
-        nome: form.nome.value,
-        telefone: form.telefone.value,
-        mensagem: form.mensagem.value
-      };
+  if (!hero) {
+    // se não existir hero, header aparece sempre
+    header.classList.add("is-visible");
+    return;
+  }
 
-      if (!validate(data)) return;
+  const show = () => header.classList.add("is-visible");
+  const hide = () => header.classList.remove("is-visible");
 
-      const text =
-        `Olá! Quero informações sobre treinos na Academia Manara Jiu-Jitsu.\n\n` +
-        `Nome: ${data.nome}\n` +
-        `Telefone: ${data.telefone}\n` +
-        `Mensagem: ${data.mensagem}\n\n` +
-        `Pode me responder, por favor?`;
+  // Se abrir já no meio da página (deep link), mostra
+  if (window.scrollY > 10) show();
 
-      const url = `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank", "noopener,noreferrer");
-      form.reset();
-    });
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0];
+        if (e.isIntersecting) hide();
+        else show();
+      },
+      { threshold: 0.03 }
+    );
+    io.observe(hero);
+  } else {
+    const onScroll = () => (window.scrollY > 40 ? show() : hide());
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 })();
-// ===== Hero Carousel (leve, responsivo, sem libs) =====
+
+/* ===== Hero Carousel (5 fotos, bem lento) ===== */
 (function () {
   const root = document.querySelector("[data-hero-carousel]");
   if (!root) return;
@@ -102,7 +147,6 @@
   const dotsWrap = root.querySelector("[data-hero-dots]");
   const prevBtn = root.querySelector("[data-hero-prev]");
   const nextBtn = root.querySelector("[data-hero-next]");
-  const pauseBtn = root.querySelector("[data-hero-pause]");
 
   if (!track || slides.length === 0 || !dotsWrap) return;
 
@@ -110,7 +154,6 @@
 
   let index = 0;
   let timer = null;
-  let paused = false;
 
   const dots = slides.map((_, i) => {
     const b = document.createElement("button");
@@ -131,58 +174,49 @@
   function goTo(i, userAction = false) {
     index = (i + slides.length) % slides.length;
     render();
-    if (userAction) restartAutoplay();
+    if (userAction) restart();
   }
 
   function next() { goTo(index + 1, true); }
   function prev() { goTo(index - 1, true); }
 
-  function stopAutoplay() {
+  function stop() {
     if (timer) clearInterval(timer);
     timer = null;
   }
 
-  function startAutoplay() {
-    if (prefersReduced || paused) return;
-    stopAutoplay();
+  function start() {
+    if (prefersReduced) return;
+    stop();
+
+    // bem lento:
     timer = setInterval(() => {
       index = (index + 1) % slides.length;
       render();
-    }, 5000);
+    }, 10000); // 10s
   }
 
-  function restartAutoplay() {
-    if (prefersReduced || paused) return;
-    startAutoplay();
+  function restart() {
+    if (prefersReduced) return;
+    start();
   }
 
-  // Botões
   prevBtn && prevBtn.addEventListener("click", prev);
   nextBtn && nextBtn.addEventListener("click", next);
 
-  // Pause
-  if (pauseBtn) {
-    pauseBtn.addEventListener("click", () => {
-      paused = !paused;
-      pauseBtn.setAttribute("aria-pressed", String(paused));
-      pauseBtn.textContent = paused ? "Retomar" : "Pausar";
-      paused ? stopAutoplay() : startAutoplay();
-    });
-  }
+  // pausa ao interagir com mouse/foco
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+  root.addEventListener("focusin", stop);
+  root.addEventListener("focusout", start);
 
-  // Pausa ao passar mouse / focar (evita “brigar” com o usuário)
-  root.addEventListener("mouseenter", () => { if (!prefersReduced) stopAutoplay(); });
-  root.addEventListener("mouseleave", () => { if (!prefersReduced) startAutoplay(); });
-  root.addEventListener("focusin", () => { if (!prefersReduced) stopAutoplay(); });
-  root.addEventListener("focusout", () => { if (!prefersReduced) startAutoplay(); });
-
-  // Teclado
+  // teclado
   root.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
     if (e.key === "ArrowRight") { e.preventDefault(); next(); }
   });
 
-  // Swipe (mobile)
+  // swipe (mobile)
   let startX = null;
   root.addEventListener("pointerdown", (e) => { startX = e.clientX; });
   root.addEventListener("pointerup", (e) => {
@@ -193,74 +227,11 @@
     dx < 0 ? next() : prev();
   });
 
-  // Se mudar de aba, pausa
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) stopAutoplay();
-    else startAutoplay();
+    if (document.hidden) stop();
+    else start();
   });
 
   render();
-  startAutoplay();
-})();
-
-/* Header escondido no topo e aparece ao rolar */
-.site-header{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-
-  transform: translateY(-110%);
-  opacity: 0;
-  pointer-events: none;
-
-  transition: transform .35s ease, opacity .25s ease;
-}
-
-.site-header.is-visible{
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Para as âncoras (#academia etc) não ficarem “embaixo” do header */
-:root{ --header-offset: 92px; }
-html{ scroll-padding-top: var(--header-offset); }
-section[id]{ scroll-margin-top: var(--header-offset); }
-
-@media (max-width: 520px){
-  :root{ --header-offset: 78px; }
-}
-
-// Header aparece somente quando rolar (quando o hero sai da tela)
-(function () {
-  const header = document.querySelector(".site-header");
-  const hero = document.querySelector("[data-hero-carousel]");
-
-  if (!header || !hero) return;
-
-  const show = () => header.classList.add("is-visible");
-  const hide = () => header.classList.remove("is-visible");
-
-  // Preferível: baseado no hero (fica bem “estilo template”)
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        const e = entries[0];
-        // Se o hero ainda está visível -> esconde header
-        // Se o hero saiu -> mostra header
-        if (e.isIntersecting) hide();
-        else show();
-      },
-      { threshold: 0.05 }
-    );
-
-    io.observe(hero);
-  } else {
-    // Fallback: baseado em scroll
-    const onScroll = () => (window.scrollY > 40 ? show() : hide());
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-  }
+  start();
 })();

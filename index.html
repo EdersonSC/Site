@@ -8,10 +8,8 @@
   <title>Academia Manara Jiu-Jitsu em Mogi Guaçu | Aulas de Jiu-Jitsu</title>
   <meta name="description" content="Treine jiu-jitsu com tradição e técnica na Academia Manara Jiu-Jitsu. Seg–Sex 07:00–22:00. Vila Paraiso, Mogi Guaçu/SP." />
 
-  <!-- Canonical (troque quando publicar) -->
   <link rel="canonical" href="https://seu-dominio.com/" />
 
-  <!-- Open Graph básico (troque URL/IMG quando publicar) -->
   <meta property="og:title" content="Academia Manara Jiu-Jitsu em Mogi Guaçu" />
   <meta property="og:description" content="Tradição, técnica e evolução no tatame. Da 5ª geração à sua 6ª geração no tatame." />
   <meta property="og:type" content="website" />
@@ -23,7 +21,11 @@
   <link rel="preload" href="styles.css" as="style" />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Dados estruturados (schema.org) -->
+  <!-- Progressive enhancement: só aplica efeitos (header some etc) se JS estiver ativo -->
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,9 +40,7 @@
       "postalCode": "13843-016",
       "addressCountry": "BR"
     },
-    "openingHours": [
-      "Mo-Fr 07:00-22:00"
-    ]
+    "openingHours": ["Mo-Fr 07:00-22:00"]
   }
   </script>
 </head>
@@ -48,15 +48,20 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- Header -->
+  <!-- Header (aparece só quando rolar; com JS desligado, fica visível) -->
   <header class="site-header" id="topo">
     <div class="container header-inner">
       <a class="brand" href="#topo" aria-label="Ir para o topo">
-        <!-- Coloque o logo anexado em /assets/logo.png -->
         <span class="brand-mark" aria-hidden="true">
-          <img class="brand-logo" src="assets/logo.png"
-              alt="Logo da Academia Manara Jiu-Jitsu"
-              width="52" height="52" loading="eager" decoding="async" />
+          <img
+            class="brand-logo"
+            src="assets/logo.png"
+            alt="Logo da Academia Manara Jiu-Jitsu"
+            width="72"
+            height="72"
+            loading="eager"
+            decoding="async"
+          />
         </span>
         <div class="brand-text">
           <span class="brand-name">Academia Manara <span class="nobr">Jiu&#8209;Jitsu</span></span>
@@ -86,133 +91,65 @@
         </a>
       </div>
     </div>
-   
   </header>
 
   <main id="conteudo">
-    <!-- Hero -->
-    <!-- <section class="hero" aria-label="Seção principal">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="pill">Tradição, técnica e evolução no tatame.</p>
-          <h1>Treine Jiu-Jitsu com tradição e técnica em Mogi Guaçu</h1>
-          <p class="subtitle">
-            Da 5ª geração à sua 6ª geração no tatame.
-          </p>
-          <p class="lineage" aria-label="Linhagem do jiu-jitsu na academia">
-            <strong>Linhagem:</strong>
-            Mytsuo Maeda <span aria-hidden="true"> &gt; </span>
-            Carlos Gracie <span aria-hidden="true"> &gt; </span>
-            Helio Gracie <span aria-hidden="true"> &gt; </span>
-            Carlson Gracie <span aria-hidden="true"> &gt; </span>
-            Orlando Saraiva <span aria-hidden="true"> &gt; </span>
-            Alexandre Manara <span aria-hidden="true"> &gt; </span>
-            <span class="you">VOCÊ</span>
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer">
-              Quero treinar (WhatsApp)
-            </a>
-            <a class="btn btn-ghost btn-lg" href="#horarios">
-              Ver horários
-            </a>
+    <!-- HERO = Carrossel com conteúdo por cima -->
+    <section class="hero hero-carousel" aria-label="Seção principal com carrossel">
+      <div class="hero-carousel__wrap" data-hero-carousel>
+        <div class="hero-carousel__track" data-hero-track>
+          <div class="hero-carousel__slide" data-hero-slide aria-hidden="false">
+            <img src="assets/jiujitsu2.jpeg" alt="Jiu-Jitsu - foto 1" loading="eager" decoding="async">
           </div>
-
-          <ul class="hero-highlights" aria-label="Destaques">
-            <li>
-              <span class="dot"></span>
-              <strong>Mestre:</strong> Alexandre Vomero Manara
-            </li>
-            <li>
-              <span class="dot"></span>
-              <strong>Endereço:</strong> Vila Paraiso, Mogi Guaçu/SP
-            </li>
-            <li>
-              <span class="dot"></span>
-              <strong>Funcionamento:</strong> Seg–Sex 07:00–22:00
-            </li>
-          </ul>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="visual-card">
-            <div class="visual-stripe"></div>
-            <div class="visual-content">
-              <p class="visual-title">Uma linhagem que atravessa gerações — você é a próxima.</p>
-              <p class="visual-sub">
-                Do primeiro treino à sua jornada: venha fazer parte da 6ª geração.
-              </p>
-            </div>
+          <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
+            <img src="assets/jiujitsu3.jpg" alt="Jiu-Jitsu - foto 2" loading="lazy" decoding="async">
           </div>
-
-          <div class="visual-grid">
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
-            <div class="mini-card"></div>
+          <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
+            <img src="assets/Jiujitus1.jpg" alt="Jiu-Jitsu - foto 3" loading="lazy" decoding="async">
+          </div>
+          <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
+            <img src="assets/maxresdefault.jpg" alt="Jiu-Jitsu - foto 4" loading="lazy" decoding="async">
+          </div>
+          <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
+            <img src="assets/slide-5.jpg" alt="Jiu-Jitsu - foto 5" loading="lazy" decoding="async">
           </div>
         </div>
+
+        <button class="hero-carousel__btn hero-carousel__btn--prev" type="button" data-hero-prev aria-label="Imagem anterior">‹</button>
+        <button class="hero-carousel__btn hero-carousel__btn--next" type="button" data-hero-next aria-label="Próxima imagem">›</button>
+
+        <div class="hero-carousel__dots" data-hero-dots aria-label="Navegação do carrossel"></div>
+        <div class="hero-carousel__overlay" aria-hidden="true"></div>
       </div>
 
-      <div class="hero-bg" aria-hidden="true"></div>
-    </section> -->
-    <section class="hero hero-carousel" aria-label="Carrossel principal">
-  <div class="hero-carousel__wrap" data-hero-carousel>
-    <div class="hero-carousel__track" data-hero-track>
-      <div class="hero-carousel__slide" data-hero-slide aria-hidden="false">
-        <img src="assets/jiujitsu2.jpeg" alt="Jiu-Jitsu - foto 1" loading="eager" decoding="async">
+      <div class="container hero-carousel__content">
+        <p class="pill">Tradição, técnica e evolução no tatame.</p>
+
+        <h1>Treine Jiu-Jitsu com tradição e técnica em Mogi Guaçu</h1>
+
+        <p class="subtitle">Da 5ª geração à sua 6ª geração no tatame.</p>
+
+        <p class="lineage" aria-label="Linhagem do jiu-jitsu na academia">
+          <strong>Linhagem:</strong>
+          Mytsuo Maeda <span aria-hidden="true">&gt;</span>
+          Carlos Gracie <span aria-hidden="true">&gt;</span>
+          Helio Gracie <span aria-hidden="true">&gt;</span>
+          Carlson Gracie <span aria-hidden="true">&gt;</span>
+          Orlando Saraiva <span aria-hidden="true">&gt;</span>
+          Alexandre Manara <span aria-hidden="true">&gt;</span>
+          <span class="you">VOCÊ</span>
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer">
+            Quero treinar (WhatsApp)
+          </a>
+          <a class="btn btn-ghost btn-lg" href="#horarios">
+            Ver horários
+          </a>
+        </div>
       </div>
-      <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/jiujitsu3.jpg" alt="Jiu-Jitsu - foto 2" loading="lazy" decoding="async">
-      </div>
-      <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/Jiujitus1.jpg" alt="Jiu-Jitsu - foto 3" loading="lazy" decoding="async">
-      </div>
-      <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/maxresdefault.jpg" alt="Jiu-Jitsu - foto 4" loading="lazy" decoding="async">
-      </div>
-      <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/slide-5.jpg" alt="Jiu-Jitsu - foto 5" loading="lazy" decoding="async">
-      </div>
-    </div>
-
-    <button class="hero-carousel__btn hero-carousel__btn--prev" type="button" data-hero-prev aria-label="Imagem anterior">‹</button>
-    <button class="hero-carousel__btn hero-carousel__btn--next" type="button" data-hero-next aria-label="Próxima imagem">›</button>
-
-    <div class="hero-carousel__dots" data-hero-dots aria-label="Navegação do carrossel"></div>
-    <div class="hero-carousel__overlay" aria-hidden="true"></div>
-  </div>
-</section>
-
-  <div class="container hero-carousel__content">
-    <p class="pill">Tradição, técnica e evolução no tatame.</p>
-
-    <h1>Treine Jiu-Jitsu com tradição e técnica em Mogi Guaçu</h1>
-
-    <p class="subtitle">Da 5ª geração à sua 6ª geração no tatame.</p>
-
-    <p class="lineage" aria-label="Linhagem do jiu-jitsu na academia">
-      <strong>Linhagem:</strong>
-      Mytsuo Maeda <span aria-hidden="true">&gt;</span>
-      Carlos Gracie <span aria-hidden="true">&gt;</span>
-      Helio Gracie <span aria-hidden="true">&gt;</span>
-      Carlson Gracie <span aria-hidden="true">&gt;</span>
-      Orlando Saraiva <span aria-hidden="true">&gt;</span>
-      Alexandre Manara <span aria-hidden="true">&gt;</span>
-      <span class="you">VOCÊ</span>
-    </p>
-
-    <div class="hero-actions">
-      <a class="btn btn-primary btn-lg" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer">
-        Quero treinar (WhatsApp)
-      </a>
-      <a class="btn btn-ghost btn-lg" href="#horarios">
-        Ver horários
-      </a>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Diferenciais / Benefícios -->
     <section class="section" id="beneficios" aria-label="Diferenciais e benefícios">
@@ -261,7 +198,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- A Academia -->
     <section class="section section-alt" id="academia" aria-label="A Academia">
       <div class="container two-col">
@@ -308,8 +245,7 @@
     <section class="section" id="mestre" aria-label="O Mestre">
       <div class="container two-col">
         <div class="photo reveal">
-          <!-- Placeholder de foto: substitua assets/mestre.jpg se tiver -->
-          <img src="assets/mestre.png" alt="Foto do Mestre Alexandre Vomero Manara (placeholder)" loading="lazy" decoding="async" />
+          <img src="assets/mestre.png" alt="Foto do Mestre Alexandre Vomero Manara" loading="lazy" decoding="async" />
           <div class="photo-badge">5ª geração → sua 6ª geração</div>
         </div>
 
@@ -331,43 +267,34 @@
         </div>
       </div>
     </section>
+
+    <!-- Galeria -->
     <section class="section section-alt" id="galeria" aria-label="Galeria de Campeonatos">
       <div class="container">
         <div class="section-head">
           <h2>Galeria de Campeonatos</h2>
-          <p class="section-sub">
-            Momentos de garra, técnica e superação dos nossos atletas nos campeonatos.
-          </p>
+          <p class="section-sub">Momentos de garra, técnica e superação dos nossos atletas nos campeonatos.</p>
         </div>
 
         <div class="gallery-grid reveal">
-          <!-- Placeholder para fotos. Substitua por suas imagens reais! -->
           <div class="gallery-item">
             <img src="assets/Lele.jpeg" alt="Atleta da Academia Manara Jiu-Jitsu em campeonato" loading="lazy" decoding="async" />
-            <div class="gallery-caption">
-              <p>Atlanta Open - Atlanta</p>
-            </div>
+            <div class="gallery-caption"><p>Atlanta Open - Atlanta</p></div>
           </div>
           <div class="gallery-item">
-            <img src="assets/Alana.jpeg" alt="Atleta da Academia Manara - Como foi o ano ?" loading="lazy" decoding="async" />
-            <div class="gallery-caption">
-              <p>Celebração retrospectiva</p>
-            </div>
+            <img src="assets/Alana.jpeg" alt="Atleta da Academia Manara - celebração" loading="lazy" decoding="async" />
+            <div class="gallery-caption"><p>Celebração retrospectiva</p></div>
           </div>
           <div class="gallery-item">
             <img src="assets/Paçoca.jpeg" alt="Luta intensa em campeonato de jiu-jitsu" loading="lazy" decoding="async" />
-            <div class="gallery-caption">
-              <p>Foco e determinação</p>
-            </div>
+            <div class="gallery-caption"><p>Foco e determinação</p></div>
           </div>
           <div class="gallery-item">
-            <img src="assets/team.png" alt="Equipe da Academia Manara Jiu-Jitsu em campeonato " loading="lazy" decoding="async" />
-            <div class="gallery-caption">
-              <p>Nossa equipe unida</p>
-            </div>
+            <img src="assets/team.png" alt="Equipe da Academia Manara Jiu-Jitsu em campeonato" loading="lazy" decoding="async" />
+            <div class="gallery-caption"><p>Nossa equipe unida</p></div>
           </div>
-          <!-- Adicione mais itens de galeria conforme necessário -->
         </div>
+
         <div class="cta-band reveal" role="region" aria-label="Chamada para ação na galeria">
           <div>
             <h3>Quer fazer parte dessa história?</h3>
@@ -385,17 +312,13 @@
       <div class="container">
         <div class="section-head">
           <h2>Horários e funcionamento</h2>
-          <p class="section-sub">
-            <strong>Segunda a sexta: 07:00–22:00</strong>
-          </p>
+          <p class="section-sub"><strong>Segunda a sexta: 07:00–22:00</strong></p>
         </div>
 
         <div class="schedule reveal" role="region" aria-label="Grade de horários">
           <div class="schedule-head">
             <h3>Grade de horários</h3>
-            <p>
-              Para horários de turmas específicas, níveis e detalhes, solicite no WhatsApp.
-            </p>
+            <p>Para horários de turmas específicas, níveis e detalhes, solicite no WhatsApp.</p>
           </div>
 
           <div class="table-wrap" role="region" aria-label="Tabela de horários" tabindex="0">
@@ -412,36 +335,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Manhã Geral</td>
-                  <td>07:00</td>
-                  <td>07:00</td>
-                  <td>07:00</td>
-                  <td>07:00</td>
-                  <td>07:00</td>
+                  <td>Manhã Geral</td><td>07:00</td><td>07:00</td><td>07:00</td><td>07:00</td><td>07:00</td>
                 </tr>
                 <tr>
-                  <td>Tarde Geral</td>
-                  <td>17:00</td>
-                  <td>17:00</td>
-                  <td>17:00</td>
-                  <td>17:00</td>
-                  <td>17:00</td>
+                  <td>Tarde Geral</td><td>17:00</td><td>17:00</td><td>17:00</td><td>17:00</td><td>17:00</td>
                 </tr>
                 <tr>
-                  <td>Tarde 40+</td>
-                  <td>-</td>
-                  <td>18:00</td>
-                  <td>-</td>
-                  <td>18:00</td>
-                  <td>-</td>
+                  <td>Tarde 40+</td><td>-</td><td>18:00</td><td>-</td><td>18:00</td><td>-</td>
                 </tr>
                 <tr>
-                  <td>Noite</td>
-                  <td>A definir</td>
-                  <td>A definir</td>
-                  <td>A definir</td>
-                  <td>A definir</td>
-                  <td>A definir</td>
+                  <td>Noite</td><td>A definir</td><td>A definir</td><td>A definir</td><td>A definir</td><td>A definir</td>
                 </tr>
               </tbody>
             </table>
@@ -456,16 +359,13 @@
         </div>
       </div>
     </section>
-    
 
     <!-- Localização -->
     <section class="section" id="localizacao" aria-label="Localização">
       <div class="container">
         <div class="section-head">
           <h2>Localização</h2>
-          <p class="section-sub">
-            R. Joaquim José da Silva Xavier, 170 - Vila Paraiso, Mogi Guaçu - SP, 13843-016
-          </p>
+          <p class="section-sub">R. Joaquim José da Silva Xavier, 170 - Vila Paraiso, Mogi Guaçu - SP, 13843-016</p>
         </div>
 
         <div class="map-grid">
@@ -480,9 +380,8 @@
 
           <div class="panel reveal">
             <h3>Como chegar</h3>
-            <p>
-              Abra o trajeto no Google Maps e venha treinar.
-            </p>
+            <p>Abra o trajeto no Google Maps e venha treinar.</p>
+
             <div class="actions">
               <a class="btn btn-primary"
                  href="https://www.google.com/maps/dir/?api=1&destination=R.%20Joaquim%20Jos%C3%A9%20da%20Silva%20Xavier%2C%20170%20-%20Vila%20Paraiso%2C%20Mogi%20Gua%C3%A7u%20-%20SP%2C%2013843-016"
@@ -539,7 +438,7 @@
 
             <div class="field">
               <label for="telefone">Telefone/WhatsApp</label>
-              <input id="telefone" name="telefone" type="tel" autocomplete="tel" required placeholder="(19) 99999-9999" />
+              <input id="telefone" name="telefone" type="tel" autocomplete="tel" required placeholder="(19) 9999-9999" />
               <small class="error" data-for="telefone" aria-live="polite"></small>
             </div>
 
@@ -562,7 +461,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer" aria-label="Rodapé">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -585,8 +483,8 @@
     </div>
   </footer>
 
-  <!-- CTA flutuante (WhatsApp) -->
-  <a class="fab" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp para falar com a Academia Manara Jiu-Jitsu">
+  <a class="fab" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer"
+     aria-label="Abrir WhatsApp para falar com a Academia Manara Jiu-Jitsu">
     WhatsApp
   </a>
 
