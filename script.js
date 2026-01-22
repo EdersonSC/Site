@@ -94,47 +94,14 @@
 
 /* ===== Header aparece só quando rolar (hero sai da tela) + offset automático ===== */
 (function () {
-  const header = document.querySelector(".site-header");
-  const hero = document.querySelector(".hero-carousel");
+  const header = document.querySelector('.site-header');
 
-  if (!header) return;
+function syncHeader() {
+  header.classList.toggle('is-visible', window.scrollY > 1);
+}
 
-  const setOffset = () => {
-    const h = Math.ceil(header.getBoundingClientRect().height);
-    // folga para não “cortar” títulos ao clicar no menu
-    document.documentElement.style.setProperty("--header-offset", `${h + 14}px`);
-  };
-
-  setOffset();
-  window.addEventListener("resize", setOffset);
-
-  if (!hero) {
-    // se não existir hero, header aparece sempre
-    header.classList.add("is-visible");
-    return;
-  }
-
-  const show = () => header.classList.add("is-visible");
-  const hide = () => header.classList.remove("is-visible");
-
-  // Se abrir já no meio da página (deep link), mostra
-  if (window.scrollY > 10) show();
-
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        const e = entries[0];
-        if (e.isIntersecting) hide();
-        else show();
-      },
-      { threshold: 0.03 }
-    );
-    io.observe(hero);
-  } else {
-    const onScroll = () => (window.scrollY > 40 ? show() : hide());
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-  }
+window.addEventListener('scroll', syncHeader, { passive: true });
+syncHeader();
 })();
 
 /* ===== Hero Carousel (5 fotos, bem lento) ===== */
