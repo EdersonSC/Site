@@ -115,17 +115,14 @@ a:hover{ text-decoration:underline; text-underline-offset: 4px; }
 
 /* ===== Header (mostra só ao rolar, com JS) ===== */
 .site-header{
-  position: fixed;      /* importante pra não “comer” altura do hero */
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  transform: translateY(-110%);
-  transition: transform .18s ease;
+  z-index: 50;
+  background: rgba(11,11,15,.75);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--line);
 }
 
-.site-header.is-visible{
-  transform: translateY(0);
-}
 /* com JS: vira fixed e some no topo */
 .js .site-header{
   position: fixed;
@@ -269,7 +266,14 @@ a:hover{ text-decoration:underline; text-underline-offset: 4px; }
 }
 /* conteúdo por cima do carrossel */
 .hero-carousel__content{
-  text-shadow: 0 6px 22px rgba(0,0,0,.55);
+  position: relative;
+  z-index: 2;
+  min-height: clamp(520px, 78vh, 780px);
+  padding: clamp(3.2rem, 7vw, 6.2rem) 0 2.4rem;
+  max-width: 760px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pill{
