@@ -778,3 +778,38 @@ input:focus, textarea:focus{
     background: #000;
   }
 }
+/* ===== FIX carrossel (essencial) ===== */
+.hero-carousel__wrap{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-carousel__track{
+  display: flex;              /* ESSENCIAL: slides lado a lado */
+  height: 100%;
+  width: 100%;
+  transform: translateX(0);
+  transition: transform .45s ease;
+  will-change: transform;
+}
+
+.hero-carousel__slide{
+  flex: 0 0 100%;            /* cada slide ocupa 100% da largura */
+  min-width: 100%;
+  height: 100%;
+}
+
+.hero-carousel__overlay{
+  position: absolute;         /* garantir que o overlay cubra */
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* botões e dots acima de tudo */
+.hero-carousel__btn,
+.hero-carousel__dots{
+  z-index: 3;
+}
