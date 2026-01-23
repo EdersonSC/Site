@@ -744,3 +744,37 @@ input:focus, textarea:focus{
   .btn, .card, .reveal, .hero-carousel__track{ transition:none !important; }
   .reveal{ opacity: 1; transform:none; }
 }
+/* Carrossel em tela cheia */
+.hero-carousel{
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* stacking correto: imagem < overlay < conteúdo */
+.hero-carousel__wrap{ position:absolute; inset:0; z-index:0; }
+.hero-carousel__overlay{ z-index:1; }
+.hero-carousel__content{ position: relative; z-index:2; }
+
+/* Remove sombreado vermelho (deixa overlay neutro) */
+.hero-carousel__overlay{
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.40) 45%, rgba(0,0,0,.22) 70%, rgba(0,0,0,.18) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.10) 45%, rgba(0,0,0,.45) 100%);
+}
+
+/* Não escurecer a foto “por código” */
+.hero-carousel__slide img{
+  filter: none;
+}
+
+/* Celular: evita “cortar” a foto (mostra inteira).
+   Vai criar barras laterais/pretas dependendo da foto (é normal). */
+@media (max-width: 720px){
+  .hero-carousel__slide img{
+    object-fit: contain;
+    background: #000;
+  }
+}
