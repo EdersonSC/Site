@@ -172,7 +172,7 @@ a:hover{ text-decoration:underline; text-underline-offset: 4px; }
   flex: 0 0 auto;
 
   /* NOVO: dá respiro interno controlado */
-  padding: clamp(20px, 0.9vw, 40px);
+ 
 }
 
 .brand-logo{
