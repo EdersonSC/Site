@@ -822,3 +822,46 @@ input:focus, textarea:focus{
 .hero-carousel__dots{
   z-index: 3;
 }
+
+.footer-credits{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+.dev-credit{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: .9rem;
+  text-decoration: none !important;
+  opacity: .9;
+}
+
+.dev-credit:hover{
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.dev-credit img{
+  display:block;
+  height: 18px;
+  width: auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
+}
+
+/* Mobile: centraliza e quebra linha se precisar */
+@media (max-width: 700px){
+  .footer-inner{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-credits{
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: .75rem;
+  }
+}
