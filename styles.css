@@ -866,3 +866,27 @@ input:focus, textarea:focus{
   }
 }
 
+/* Imagens do carrossel */
+.hero-carousel__slide{
+  background: #000; /* barras quando usar contain no mobile */
+}
+
+.hero-carousel__slide img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* desktop: preenche e pode cortar */
+  object-position: center; /* ajuste o foco se precisar */
+  display: block;
+}
+
+/* Mobile: mostra a foto inteira (sem cortar) */
+@media (max-width: 720px){
+  .hero-carousel{
+    min-height: 70svh; /* melhor que 100vh no celular (considera barras do navegador) */
+  }
+
+  .hero-carousel__slide img{
+    object-fit: contain;  /* celular: não corta, pode ter “barras” */
+    object-position: center;
+  }
+}
