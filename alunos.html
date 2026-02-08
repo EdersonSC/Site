@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0f" />
+
+  <title>Alunos App | Academia Manara Jiu-Jitsu</title>
+  <meta name="description" content="Acesse o sistema de alunos da Academia Manara Jiu-Jitsu e crie um atalho no seu smartphone (Android e iPhone)." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Favicons (ajuste os nomes se necessário) -->
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <!-- Reaproveita o mesmo CSS do site -->
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Estilos pequenos só desta página (pode mover pro styles.css se quiser) -->
+  <style>
+    .help-hero{
+      padding: 3.2rem 0 1.8rem;
+    }
+    .help-card{
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(18,19,27,.58);
+      padding: 1.15rem;
+      box-shadow: var(--shadow);
+    }
+    .help-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .help-card h2{
+      margin:0 0 .6rem;
+      font-family: var(--font-head);
+      letter-spacing:.2px;
+      font-size: 1.25rem;
+    }
+    .help-card p{ margin:.35rem 0; color: var(--muted); }
+    .help-steps{
+      margin: .8rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+    .help-steps li{ margin:.4rem 0; }
+    .help-actions{
+      display:flex;
+      flex-wrap: wrap;
+      gap:.75rem;
+      margin-top: 1rem;
+      align-items:center;
+    }
+    .help-note{
+      margin-top: .75rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .help-footer-note{
+      margin-top: 1rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    @media (max-width: 900px){
+      .help-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Header do site (sem o script que coloca .js, então aqui ele fica sempre visível) -->
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Voltar para a página inicial">
+        <span class="brand-mark" aria-hidden="true">
+          <img
+            class="brand-logo"
+            src="assets/logo1.png"
+            alt="Logo da Academia Manara Jiu-Jitsu"
+            width="92"
+            height="92"
+            loading="eager"
+            decoding="async"
+          />
+        </span>
+        <div class="brand-text">
+          <span class="brand-name">Academia Manara <span class="nobr">Jiu&#8209;Jitsu</span></span>
+          <span class="brand-tag">Mogi Guaçu / SP</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="nav" id="nav" aria-label="Menu principal">
+        <a href="index.html#academia">Academia</a>
+        <a href="index.html#mestre">Mestre</a>
+        <a href="index.html#galeria">Galeria</a>
+        <a href="index.html#horarios">Horários</a>
+        <a href="index.html#localizacao">Localização</a>
+        <a href="index.html#contato">Contato</a>
+        <a href="alunos.html" aria-current="page">Alunos App</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn btn-ghost" href="index.html#horarios">Ver horários</a>
+        <a class="btn btn-primary" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer">
+          Agendar aula experimental
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="section help-hero" aria-label="Alunos App">
+      <div class="container">
+        <div class="help-card reveal">
+          <p class="pill">Área do aluno</p>
+          <h1>Alunos App</h1>
+          <p class="subtitle">Acesse o sistema e crie um atalho no seu celular (Android e iPhone).</p>
+
+          <div class="help-actions">
+            <a class="btn btn-primary btn-lg" href="https://bjjcontrol.com.br/manarajiujitsu/alunos/#/" target="_blank" rel="noopener noreferrer">
+              Acesse o sistema aqui: Alunos App
+            </a>
+            <a class="btn btn-ghost btn-lg" href="index.html">
+              Voltar para o site
+            </a>
+          </div>
+
+          <p class="help-note">
+            Versão web:
+            <a href="https://bjjcontrol.com.br/manarajiujitsu/alunos/#/" target="_blank" rel="noopener noreferrer">
+              https://bjjcontrol.com.br/manarajiujitsu/alunos/#/
+            </a>
+          </p>
+        </div>
+
+        <div class="help-grid">
+          <article class="help-card reveal" aria-label="Instruções Android">
+            <h2>Android (Chrome)</h2>
+            <p>Crie um atalho na tela inicial para abrir como “app”.</p>
+            <ol class="help-steps">
+              <li>Abra o link do sistema no <strong>Chrome</strong>.</li>
+              <li>Toque no menu <strong>⋮</strong> (canto superior).</li>
+              <li>Toque em <strong>Adicionar à tela inicial</strong> (ou “Instalar app”, se aparecer).</li>
+              <li>Confirme o nome e toque em <strong>Adicionar</strong>.</li>
+            </ol>
+          </article>
+
+          <article class="help-card reveal" aria-label="Instruções iPhone iOS">
+            <h2>iPhone (Safari)</h2>
+            <p>No iOS, o atalho funciona melhor pelo Safari.</p>
+            <ol class="help-steps">
+              <li>Abra o link do sistema no <strong>Safari</strong>.</li>
+              <li>Toque em <strong>Compartilhar</strong> (ícone do quadrado com seta).</li>
+              <li>Role e toque em <strong>Adicionar à Tela de Início</strong>.</li>
+              <li>Confirme e toque em <strong>Adicionar</strong>.</li>
+            </ol>
+          </article>
+        </div>
+
+        <p class="help-footer-note reveal">Abração da equipe BJJ Control®. OSS</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Rodapé">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-name">Academia Manara Jiu-Jitsu</div>
+        <div class="footer-meta">
+          <p>R. Joaquim José da Silva Xavier, 170 - Vila Paraiso, Mogi Guaçu - SP, 13843-016</p>
+          <p><a href="tel:+5519993422115">(19) 99342-2115</a> • Seg–Sex 07:00–22:00</p>
+          <p class="muted">Academia Manara Jiu-Jitsu — Mogi Guaçu/SP</p>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Links do rodapé">
+        <a href="index.html#academia">A Academia</a>
+        <a href="index.html#mestre">Mestre</a>
+        <a href="index.html#galeria">Galeria</a>
+        <a href="index.html#horarios">Horários</a>
+        <a href="index.html#localizacao">Localização</a>
+        <a href="index.html#contato">Contato</a>
+        <a href="alunos.html">Alunos App</a>
+      </nav>
+
+      <div class="footer-credits" aria-label="Créditos do site">
+        <a class="dev-credit" href="https://www.l3me.com.br" target="_blank" rel="noopener noreferrer">
+          <span>Desenvolvido por</span>
+          <img src="assets/rudder.svg" alt="Rudder" width="90" height="22" loading="lazy" decoding="async">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="fab" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer"
+     aria-label="Abrir WhatsApp para falar com a Academia Manara Jiu-Jitsu">
+    WhatsApp
+  </a>
+
+  <noscript>
+    <div class="noscript">
+      Para melhor experiência, ative o JavaScript.
+    </div>
+  </noscript>
+
+  <!-- Reaproveita seu JS (menu mobile, reveal etc.) -->
+  <script src="script.js" defer></script>
+</body>
+</html>
