@@ -891,15 +891,15 @@ input:focus, textarea:focus{
   }
 }
 
-.hero-carousel__slide picture{
+/* garante que picture e img ocupem 100% do slide */
+.hero-carousel__slide picture,
+.hero-carousel__slide picture img {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.hero-carousel__slide picture img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.hero-carousel__slide picture img {
+  object-fit: cover;       /* mantém o comportamento cover */
+  object-position: 50% 55%;/* ajuste fino do foco */
 }
