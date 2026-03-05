@@ -68,8 +68,7 @@
           />
         </span>
         <div class="brand-text">
-          <span class="brand-name">Academia Manara <span class="nobr">Jiu&#8209;Jitsu</span></span>
-          <span class="brand-tag">Mogi Guaçu / SP</span>
+          <span class="brand-name">Academia Manara </span>
         </div>
       </a>
 
@@ -84,16 +83,21 @@
         <a href="#mestre">Mestre</a>
         <a href="#galeria">Galeria</a>
         <a href="#horarios">Horários</a>
-        <a href="#localizacao">Localização</a>
+        <a href="#localizacao">Unidades</a>
         <a href="#contato">Contato</a>
-        <a href="alunos.html">Alunos App</a>
+        <a href="alunos.html">Alunos</a>
       </nav>
 
       <div class="header-cta">
-        <a class="btn btn-ghost" href="#horarios">Ver horários</a>
-        <a class="btn btn-primary" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer">
-          Agendar aula experimental
-        </a>
+        <div class="header-secondary-logo">
+            <img 
+              src="assets/Lotus-SF.png" 
+              alt="lotusBJJ" 
+              width="150" 
+              height="150" 
+              loading="lazy"
+            />
+          </div>
       </div>
     </div>
   </header>
@@ -414,50 +418,72 @@
     </section>
 
     <!-- Localização -->
-    <section class="section" id="localizacao" aria-label="Localização">
-      <div class="container">
-        <div class="section-head">
-          <h2>Localização</h2>
-          <p class="section-sub">R. Joaquim José da Silva Xavier, 170 - Vila Paraiso, Mogi Guaçu - SP, 13843-016</p>
+    <section class="section" id="localizacao" aria-label="Nossas Unidades">
+  <div class="container">
+    <div class="section-head">
+      <h2>Nossas Unidades</h2>
+      <p class="section-sub">Escolha a academia mais próxima e venha fazer parte da nossa linhagem.</p>
+    </div>
+
+    <div class="units-grid">
+      <!-- Unidade Mogi Guaçu I (Matriz) -->
+      <article class="unit-card reveal">
+        <div class="unit-info">
+          <p class="pill">Matriz</p>
+          <h3>Mogi Guaçu I</h3>
+          <p>R. Joaquim José da Silva Xavier, 170 - Vila Paraiso, Mogi Guaçu - SP</p>
         </div>
-
-        <div class="map-grid">
-          <div class="map reveal" role="region" aria-label="Mapa">
-            <iframe
-              title="Mapa - Academia Manara Jiu-Jitsu"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=R.%20Joaquim%20Jos%C3%A9%20da%20Silva%20Xavier%2C%20170%20-%20Vila%20Paraiso%2C%20Mogi%20Gua%C3%A7u%20-%20SP%2C%2013843-016&output=embed">
-            </iframe>
-          </div>
-
-          <div class="panel reveal">
-            <h3>Como chegar</h3>
-            <p>Abra o trajeto no Google Maps e venha treinar.</p>
-
-            <div class="actions">
-              <a class="btn btn-primary"
-                 href="https://www.google.com/maps/dir/?api=1&destination=R.%20Joaquim%20Jos%C3%A9%20da%20Silva%20Xavier%2C%20170%20-%20Vila%20Paraiso%2C%20Mogi%20Gua%C3%A7u%20-%20SP%2C%2013843-016"
-                 target="_blank" rel="noopener noreferrer">
-                Como chegar
-              </a>
-              <a class="btn btn-ghost" href="#contato">Falar com a academia</a>
-            </div>
-
-            <dl class="info compact">
-              <div>
-                <dt>Telefone/WhatsApp</dt>
-                <dd><a href="tel:+5519993422115">(19) 99342-2115</a></dd>
-              </div>
-              <div>
-                <dt>Horário</dt>
-                <dd>Seg–Sex 07:00–22:00</dd>
-              </div>
-            </dl>
-          </div>
+        <div class="unit-actions">
+          <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination=R.%20Joaquim%20Jos%C3%A9%20da%20Silva%20Xavier%2C%20170%20-%20Vila%20Paraiso%2C%20Mogi%20Gua%C3%A7u%20-%20SP" target="_blank" rel="noopener">Como Chegar</a>
         </div>
-      </div>
-    </section>
+      </article>
+
+      <!-- Unidade Mogi Guaçu II -->
+      <article class="unit-card reveal">
+        <div class="unit-info">
+          <h3>Mogi Guaçu II</h3>
+          <p>R. Luiz Martini, 200 - Centro, Mogi Guaçu - SP</p>
+        </div>
+        <div class="unit-actions">
+          <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination=R.%20Luiz%20Martini%2C%20200%20-%20Centro%2C%20Mogi%20Gua%C3%A7u%20-%20SP" target="_blank" rel="noopener">Como Chegar</a>
+        </div>
+      </article>
+
+      <!-- Unidade Mogi Mirim -->
+      <article class="unit-card reveal">
+        <div class="unit-info">
+          <h3>Mogi Mirim</h3>
+          <p>Rua Áurea, 629 – Jardim Áurea (Grêmio Mogi Miriano), Mogi Mirim - SP</p>
+        </div>
+        <div class="unit-actions">
+          <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination=Rua%20%C3%81urea%2C%20629%20%E2%80%93%20Jardim%20%C3%81urea%20Mogi%20Mirim" target="_blank" rel="noopener">Como Chegar</a>
+        </div>
+      </article>
+
+      <!-- Unidade Itapira -->
+      <article class="unit-card reveal">
+        <div class="unit-info">
+          <h3>Itapira</h3>
+          <p>Rua Padre Manoel da Nóbrega, 381 - Vila Boa Esperança, Itapira - SP</p>
+        </div>
+        <div class="unit-actions">
+          <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination=Rua%20Padre%20Manoel%20da%20N%C3%B3brega%2C%20381%20-%20Vila%20Boa%20Esperan%C3%A7a%2C%20Itapira" target="_blank" rel="noopener">Como Chegar</a>
+        </div>
+      </article>
+
+      <!-- Unidade Tambaú -->
+      <article class="unit-card reveal">
+        <div class="unit-info">
+          <h3>Tambaú (Lotus Manara)</h3>
+          <p>Rua César Lepri, 1040, Vila Alvorada - Tambaú - SP</p>
+        </div>
+        <div class="unit-actions">
+          <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination=Rua%20C%C3%A9sar%20Lepri%2C%201040%2C%20Vila%20Alvorada%20-%20Tamba%C3%BA" target="_blank" rel="noopener">Como Chegar</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
     <!-- Contato -->
     <section class="section section-alt" id="contato" aria-label="Contato">

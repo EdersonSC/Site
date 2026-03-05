@@ -878,6 +878,35 @@ input:focus, textarea:focus{
   object-position: center; /* ajuste o foco se precisar */
   display: block;
 }
+.header-secondary-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;  /* Ajuste o tamanho conforme necessário */
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.header-secondary-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Garante que o logo não seja cortado */
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); /* Sombra leve para destaque */
+}
+
+@media (max-width: 1024px) {
+  .header-secondary-logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Esconde no mobile se o header ficar muito apertado */
+@media (max-width: 520px) {
+  .header-secondary-logo {
+    display: none; 
+  }
+}
 
 /* Mobile: mostra a foto inteira (sem cortar) */
 @media (max-width: 720px){
@@ -902,4 +931,107 @@ input:focus, textarea:focus{
 .hero-carousel__slide picture img {
   object-fit: cover;       /* mantém o comportamento cover */
   object-position: 50% 55%;/* ajuste fino do foco */
+}
+
+/* Grid de Unidades */
+.units-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.unit-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.unit-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.unit-card h3 {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.unit-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.unit-card .pill {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.unit-actions {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.unit-actions .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 600px) {
+  .units-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ajuste para os cards ficarem lado a lado */
+.professors-grid {
+  display: grid;
+  /* Permite até 3 ou 4 cards por linha se houver espaço */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  /* Garante que a grid use toda a largura disponível */
+  width: 100%; 
+}
+
+/* Ajuste opcional: se você quiser que os cards não fiquem largos demais 
+   quando houver apenas um (como no caso do Mestre Alexandre) */
+.unit-block {
+  max-width: 1200px; /* Limita a largura máxima da seção */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Se houver apenas 1 professor na unidade, ele não ocupará a tela toda */
+.professor-card {
+  max-width: 300px; 
+}
+
+/* Em telas de tablet/celular, eles voltam a empilhar se necessário */
+@media (max-width: 600px) {
+  .professors-grid {
+    grid-template-columns: 1fr;
+  }
+  .professor-card {
+    max-width: 100%;
+  }
 }
