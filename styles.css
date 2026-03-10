@@ -783,13 +783,15 @@ input:focus, textarea:focus{
    Vai criar barras laterais/pretas dependendo da foto (é normal). */
 @media (max-width: 720px){
   .hero-carousel{
-    min-height: 60svh;
+    height: 100svh; /* Garante altura total no celular */
+    min-height: 100svh;
   }
-  
+
   .hero-carousel__slide img{
-    object-fit: cover;
+    object-fit: fill;
     background: #000;
     object-position: center;
+    filter: none;
   }
 }
 /* ===== FIX carrossel (essencial) ===== */
