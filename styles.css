@@ -782,9 +782,14 @@ input:focus, textarea:focus{
 /* Celular: evita “cortar” a foto (mostra inteira).
    Vai criar barras laterais/pretas dependendo da foto (é normal). */
 @media (max-width: 720px){
+  .hero-carousel{
+    min-height: 60svh;
+  }
+  
   .hero-carousel__slide img{
-    object-fit: contain;
+    object-fit: cover;
     background: #000;
+    object-position: center;
   }
 }
 /* ===== FIX carrossel (essencial) ===== */
