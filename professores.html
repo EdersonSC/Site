@@ -115,73 +115,37 @@
       line-height: 1;
     }
 
-    /* Cards de professores */
+    /* Ajuste para os cards ficarem lado a lado */
     .professors-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.25rem;
+      /* Permite até 3 ou 4 cards por linha se houver espaço */
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      /* Garante que a grid use toda a largura disponível */
+      width: 100%; 
     }
+
+    /* Ajuste opcional: se você quiser que os cards não fiquem largos demais 
+      quando houver apenas um (como no caso do Mestre Alexandre) */
+    .unit-block {
+      max-width: 1200px; /* Limita a largura máxima da seção */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Se houver apenas 1 professor na unidade, ele não ocupará a tela toda */
     .professor-card {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      text-align: center;
-      transition: all .3s ease;
-    }
-    .professor-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary);
-      background: rgba(255,255,255,.06);
-    }
-    .professor-card .prof-photo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 0 auto 1rem;
-      border: 2px solid var(--line);
-    }
-    .professor-card .prof-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .professor-card h4 {
-      font-size: 1rem;
-      margin-bottom: .3rem;
-    }
-    .professor-card .prof-belt {
-      font-size: .78rem;
-      color: var(--muted);
-      margin-bottom: .75rem;
-    }
-    .professor-card .btn {
-      width: 100%;
-      font-size: .82rem;
-      padding: .45rem .75rem;
+      max-width: 300px; 
     }
 
-    /* Placeholder de foto (quando não tem imagem) */
-    .photo-placeholder {
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-    }
-
-    @media (max-width: 700px) {
-      .master-card {
-        flex-direction: column;
-        text-align: center;
+    /* Em telas de tablet/celular, eles voltam a empilhar se necessário */
+    @media (max-width: 600px) {
+      .professors-grid {
+        grid-template-columns: 1fr;
       }
-      .master-card .master-photo {
-        flex: 0 0 160px;
-        width: 160px;
-        height: 160px;
+      .professor-card {
+        max-width: 100%;
       }
     }
   </style>
@@ -192,15 +156,23 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="site-header" id="topo">
+    <header class="site-header" id="topo">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Voltar para a página inicial">
+      <a class="brand" href="#topo" aria-label="Ir para o topo">
         <span class="brand-mark" aria-hidden="true">
-          <img class="brand-logo" src="assets/logo1.png" alt="Logo Academia Manara" width="92" height="92" loading="eager" decoding="async" />
+          <img
+            class="brand-logo"
+            src="assets/logo1.png"
+            alt="Logo da Academia Manara Jiu-Jitsu"
+            width="92"
+            height="92"
+            loading="eager"
+            decoding="async"
+          />
         </span>
         <div class="brand-text">
-          <span class="brand-name">Academia Manara <span class="nobr">Jiu&#8209;Jitsu</span></span>
-          <span class="brand-tag">Mogi Guaçu / SP</span>
+          <span class="brand-name">Academia Manara </span>
+                     
         </div>
       </a>
 
@@ -211,21 +183,26 @@
       </button>
 
       <nav class="nav" id="nav" aria-label="Menu principal">
-        <a href="index.html#academia">Academia</a>
-        <a href="index.html#mestre">Mestre</a>
-        <a href="equipe.html" aria-current="page">Equipe</a>
-        <a href="index.html#galeria">Galeria</a>
-        <a href="index.html#horarios">Horários</a>
-        <a href="index.html#localizacao">Unidades</a>
-        <a href="index.html#contato">Contato</a>
-        <a href="alunos.html">Alunos App</a>
+        
+        <a href="#academia">Academia</a>
+        <a href="#mestre">Mestre</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#horarios">Horários</a>
+        <a href="#localizacao">Unidades</a>
+        <a href="#contato">Contato</a>
+        <a href="alunos.html">Alunos</a>
       </nav>
 
       <div class="header-cta">
-        <a class="btn btn-ghost" href="index.html#horarios">Ver horários</a>
-        <a class="btn btn-primary" href="https://wa.me/5519993422115" target="_blank" rel="noopener noreferrer">
-          Agendar aula experimental
-        </a>
+        <div class="header-secondary-logo">
+            <img 
+              src="assets/Lotus-SF.png" 
+              alt="lotusBJJ" 
+              width="150" 
+              height="150" 
+              loading="lazy"
+            />
+          </div>
       </div>
     </div>
   </header>

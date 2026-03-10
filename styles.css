@@ -1002,36 +1002,5 @@ input:focus, textarea:focus{
   }
 }
 
-/* Ajuste para os cards ficarem lado a lado */
-.professors-grid {
-  display: grid;
-  /* Permite até 3 ou 4 cards por linha se houver espaço */
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  /* Garante que a grid use toda a largura disponível */
-  width: 100%; 
-}
 
-/* Ajuste opcional: se você quiser que os cards não fiquem largos demais 
-   quando houver apenas um (como no caso do Mestre Alexandre) */
-.unit-block {
-  max-width: 1200px; /* Limita a largura máxima da seção */
-  margin-left: auto;
-  margin-right: auto;
-}
 
-/* Se houver apenas 1 professor na unidade, ele não ocupará a tela toda */
-.professor-card {
-  max-width: 300px; 
-}
-
-/* Em telas de tablet/celular, eles voltam a empilhar se necessário */
-@media (max-width: 600px) {
-  .professors-grid {
-    grid-template-columns: 1fr;
-  }
-  .professor-card {
-    max-width: 100%;
-  }
-}
