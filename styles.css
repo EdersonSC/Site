@@ -366,11 +366,6 @@ a:hover{ text-decoration:underline; text-underline-offset: 4px; }
   border-color: rgba(255,255,255,.12);
 }
 
-@media (max-width: 720px){
-  .hero-carousel__btn{ display:none; }
-  .hero-carousel__content{ max-width: 92%; }
-}
-
 /* ===== Linhagem ===== */
 .lineage{
   margin: .9rem 0 0;
@@ -779,21 +774,6 @@ input:focus, textarea:focus{
   filter: none;
 }
 
-/* Celular: evita “cortar” a foto (mostra inteira).
-   Vai criar barras laterais/pretas dependendo da foto (é normal). */
-@media (max-width: 720px){
-  .hero-carousel{
-    height: 100svh; /* Garante altura total no celular */
-    min-height: 100svh;
-  }
-
-  .hero-carousel__slide img{
-    object-fit: fill;
-    background: #000;
-    object-position: center;
-    filter: none;
-  }
-}
 /* ===== FIX carrossel (essencial) ===== */
 .hero-carousel__wrap{
   position: absolute;
@@ -916,14 +896,25 @@ input:focus, textarea:focus{
 }
 
 /* Mobile: mostra a foto inteira (sem cortar) */
-@media (max-width: 720px){
-  .hero-carousel{
-    min-height: 70svh; /* melhor que 100vh no celular (considera barras do navegador) */
+@media (max-width: 720px) {
+  .hero-carousel {
+    height: 100svh !important; 
+    min-height: 100svh !important;
   }
 
-  .hero-carousel__slide img{
-    object-fit: contain;  /* celular: não corta, pode ter “barras” */
-    object-position: center;
+  .hero-carousel__slide img {
+    object-fit: fill !important; /* Força a esticar */
+    object-position: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    filter: none !important;
+  }
+
+  /* Ajuste para garantir que o container do slide não limite a imagem */
+  .hero-carousel__slide, 
+  .hero-carousel__slide picture {
+    height: 100% !important;
+    display: block !important;
   }
 }
 
