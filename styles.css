@@ -903,7 +903,7 @@ input:focus, textarea:focus{
   }
 
   .hero-carousel__slide img {
-    object-fit: fill !important; /* Força a esticar */
+    object-fit: cover !important; /* Força a esticar */
     object-position: center !important;
     width: 100% !important;
     height: 100% !important;
