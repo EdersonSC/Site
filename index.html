@@ -4,61 +4,63 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
- 
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0b0b0f" />
 
-  <title>Academia Manara Jiu-Jitsu em Mogi Guaçu | Aulas de Jiu-Jitsu</title>
+  <title>Academia Manara Jiu-Jitsu em Mogi Guaçu (Vila Paraíso) | Aulas e Treinos</title>
   <meta name="description" content="Academia de Jiu-Jitsu em Mogi Guaçu (Vila Paraíso). Aulas para iniciantes e avançados. Seg–Sex 07:00–22:00. Agende sua aula pelo WhatsApp." />
-  <meta name="description" content="Treine jiu-jitsu com tradição e técnica na Academia Manara Jiu-Jitsu. Seg–Sex 07:00–22:00. Vila Paraiso, Mogi Guaçu/SP." />
 
   <link rel="canonical" href="https://manarabjj.com.br/" />
+  <meta name="robots" content="index,follow" />
 
-  <meta property="og:title" content="Academia Manara Jiu-Jitsu em Mogi Guaçu" />
-  <meta property="og:description" content="Tradição, técnica e evolução no tatame. Da 5ª geração à sua 6ª geração no tatame." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Academia Manara Jiu-Jitsu em Mogi Guaçu | Aulas de Jiu-Jitsu" />
+  <meta property="og:description" content="Tradição, técnica e evolução no tatame. Da 5ª geração à sua 6ª geração. Vila Paraíso, Mogi Guaçu/SP." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://manarabjj.com.br/" />
   <meta property="og:image" content="https://manarabjj.com.br/og.jpg" />
 
-  <meta name="robots" content="index,follow" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Academia Manara Jiu-Jitsu em Mogi Guaçu" />
+  <meta name="twitter:description" content="Tradição, técnica e evolução no tatame. Seg–Sex 07:00–22:00. Vila Paraíso, Mogi Guaçu/SP." />
+  <meta name="twitter:image" content="https://manarabjj.com.br/og.jpg" />
 
   <link rel="preload" href="styles.css" as="style" />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Progressive enhancement: só aplica efeitos (header some etc) se JS estiver ativo -->
-  <script>
-    document.documentElement.classList.add('js');
-  </script>
+  <script>document.documentElement.classList.add('js');</script>
 
+  <!-- Schema.org -->
   <script type="application/ld+json">
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SportsActivityLocation",
-  "name": "Academia Manara Jiu-Jitsu",
-  "url": "https://manarabjj.com.br/",
-  "telephone": "+5519993422115",
-  "image": "https://manarabjj.com.br/og.jpg",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "R. Joaquim José da Silva Xavier, 170 - Vila Paraiso",
-    "addressLocality": "Mogi Guaçu",
-    "addressRegion": "SP",
-    "postalCode": "13843-016",
-    "addressCountry": "BR"
-  },
-  "openingHours": ["Mo-Fr 07:00-22:00"],
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -22.3700,
-    "longitude": -46.9400
-  },
-  "sameAs": [
-    "https://www.instagram.com/manarabjj"
-  ]
-}
-</script>
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Academia Manara Jiu-Jitsu",
+    "url": "https://manarabjj.com.br/",
+    "telephone": "+5519993422115",
+    "image": "https://manarabjj.com.br/og.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "R. Joaquim José da Silva Xavier, 170 - Vila Paraiso",
+      "addressLocality": "Mogi Guaçu",
+      "addressRegion": "SP",
+      "postalCode": "13843-016",
+      "addressCountry": "BR"
+    },
+    "openingHours": ["Mo-Fr 07:00-22:00"],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -22.3700,
+      "longitude": -46.9400
+    },
+    "sameAs": [
+      "https://www.instagram.com/manarabjj"
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -123,23 +125,38 @@
     <div class="hero-carousel__track" data-hero-track>
 
       <div class="hero-carousel__slide" data-hero-slide aria-hidden="false">
-        <img src="assets/manaraBJJ.jpg" alt="Jiu-Jitsu - foto 1" loading="eager" decoding="async">
+  <picture>
+    <source media="(max-width: 720px)" srcset="assets/manaraBJJ.jpg">
+    <img src="assets/manaraBJJ.jpg" alt="Jiu-Jitsu - foto 1" loading="eager" decoding="async">
+  </picture>
+</div>
+
+      <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/Lele.jpg">
+          <img src="assets/pexels-hugazoboss-17292197.jpg" alt="Jiu-Jitsu - foto 2" loading="lazy" decoding="async">
+        </picture>
       </div>
 
       <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/pexels-hugazoboss-17292197.jpg" alt="Jiu-Jitsu - foto 2" loading="lazy" decoding="async">
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/treinoMlheres.jpeg">
+          <img src="assets/jiujitsu2.jpeg" alt="Jiu-Jitsu - foto 3" loading="lazy" decoding="async">
+        </picture>
       </div>
 
       <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/jiujitsu2.jpeg" alt="Jiu-Jitsu - foto 3" loading="lazy" decoding="async">
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/treinoda17.jpeg">
+          <img src="assets/treinoda17.jpeg " alt="Jiu-Jitsu - foto 4" loading="lazy" decoding="async">
+        </picture>
       </div>
 
       <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/maxresdefault.jpg" alt="Jiu-Jitsu - foto 4" loading="lazy" decoding="async">
-      </div>
-
-      <div class="hero-carousel__slide" data-hero-slide aria-hidden="true">
-        <img src="assets/jiujitsu5.jpeg" alt="Jiu-Jitsu - foto 5" loading="lazy" decoding="async">
+        <picture>
+          <source media="(max-width: 720px)" srcset="assets/Treinoda20.jpeg">
+          <img src="assets/Treinoda20.jpeg" alt="Jiu-Jitsu - foto 5" loading="lazy" decoding="async">
+        </picture>
       </div>
 
     </div>
