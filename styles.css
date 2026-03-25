@@ -1001,4 +1001,26 @@ input:focus, textarea:focus{
 }
 
 
+.scroll-down {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s, transform 0.3s;
+  animation: bounce 2s infinite;
+}
 
+.scroll-down:hover {
+  color: rgba(255, 255, 255, 1);
+  transform: translateX(-50%) translateY(4px);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
